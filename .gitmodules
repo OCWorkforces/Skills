@@ -1,3 +1,6 @@
 [submodule "humanizer"]
 	path = humanizer
 	url = git@github.com:blader/humanizer.git
+[submodule "stop-slop"]
+	path = stop-slop
+	url = git@github.com:hardikpandya/stop-slop.git
