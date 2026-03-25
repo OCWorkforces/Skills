@@ -157,9 +157,18 @@ extension Drawable {
 
 extension Collection {
     func chunked(into size: Int) -> [[Element]] {
-        stride(from: 0, to: count, by: size).map {
-            Array(self[$0..<Swift.min($0 + size, count)])
+        guard size > 0 else { return [] }
+
+        var result: [[Element]] = []
+        var i = startIndex
+
+        while i != endIndex {
+            let j = index(i, offsetBy: size, limitedBy: endIndex) ?? endIndex
+            result.append(Array(self[i..<j]))
+            i = j
         }
+
+        return result
     }
 }
 ```
@@ -216,7 +225,8 @@ struct Point {
 
 ### 4.2 Use Classes When Needed
 
-Use classes for shared mutable state, identity matters:
+Use classes when identity, shared ownership, or reference semantics matter.
+Prefer actors for mutable state shared across concurrent tasks:
 
 ```swift
 class NetworkManager {
@@ -270,6 +280,9 @@ class Person {
 ```
 
 ### 5.2 Closure Capture Lists
+
+Use capture lists intentionally to avoid retain cycles.
+Choose `weak` or `unowned` based on lifetime guarantees:
 
 ```swift
 // Weak capture for optional self
@@ -384,6 +397,8 @@ func perform<T>(_ operation: () throws -> T) rethrows -> T {
 ## 7. Modern Concurrency (async/await)
 
 **Impact:** CRITICAL
+
+Use actor isolation and `Sendable` to prevent data races across concurrency domains.
 
 ### 7.1 Async Functions
 
@@ -715,13 +730,14 @@ UIView.animate(withDuration: 0.3) {
 - [ ] No implicitly unwrapped optionals (`!`) in data models
 
 ### Memory
-- [ ] Closures use `[weak self]` when capturing self in escaping closures
+- [ ] Escaping closures capture `self` intentionally; use `[weak self]` or `[unowned self]` to avoid retain cycles when needed
 - [ ] Delegate properties are `weak`
 - [ ] No retain cycles between objects
 
 ### Concurrency
 - [ ] Async functions used instead of completion handlers
-- [ ] Actors protect shared mutable state
+- [ ] Mutable state shared across concurrency domains is isolated, often with actors
+- [ ] Types crossing concurrency domains use `Sendable` when appropriate
 - [ ] UI updates on `@MainActor`
 - [ ] Task cancellation checked in long operations
 
