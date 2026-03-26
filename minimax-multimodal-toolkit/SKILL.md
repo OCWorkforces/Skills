@@ -1,6 +1,17 @@
 ---
 name: minimax-multimodal-toolkit
-description: MiniMax multimodal model skill — use MiniMax  Multi-Modal models for speech, music, video, and image. Create voice, music, video, and images with MiniMax AI: TTS (text-to-speech, voice cloning, voice design, multi-segment), music (songs, instrumentals), video (text-to-video, image-to-video, start-end frame, subject reference, templates, long-form multi-scene), image (text-to-image, image-to-image with character reference), and media processing (convert, concat, trim, extract). Use when the user mentions MiniMax, multimodal generation, or wants speech/music/video/image AI, MiniMax APIs, or FFmpeg workflows alongside MiniMax outputs.
+description: >
+  MiniMax multimodal model skill — use MiniMax Multi-Modal models for speech, music, video, and image.
+  Create voice, music, video, and images with MiniMax AI: TTS (text-to-speech, voice cloning, voice design,
+  multi-segment), music (songs, instrumentals), video (text-to-video, image-to-video, start-end frame,
+  subject reference, templates, long-form multi-scene), image (text-to-image, image-to-image with character
+  reference), and media processing (convert, concat, trim, extract).
+  Use when the user mentions MiniMax, multimodal generation, or wants speech/music/video/image AI,
+  MiniMax APIs, or FFmpeg workflows alongside MiniMax outputs.
+license: MIT
+metadata:
+  version: "1.0"
+  category: media-generation
 ---
 
 # MiniMax Multi-Modal Toolkit
